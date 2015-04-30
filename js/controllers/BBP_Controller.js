@@ -3,11 +3,11 @@
  */
 
 
-app.controller("ApplicationController",['$scope','$http','$q','ApiJsonDataAccessService',
-        function($scope,$http,$q,ApiJsonDataAccessService){
+app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAccessService',
+        function ($scope, $http, $q, ApiJsonDataAccessService) {
 
             //define the init() function
-            $scope.init = function(){
+            $scope.init = function () {
 
                 console.log('ApplicationController Init() - start');
 
@@ -18,8 +18,11 @@ app.controller("ApplicationController",['$scope','$http','$q','ApiJsonDataAccess
                 $scope.CurrentProduct = null;           //the instance of currently selected product (by sku)
                 $scope.UrlDomainPortion = 'http://www.bestbuy.ca';
 
+                $scope.IsFirstPage = true;
+                $scope.IsLastPage = false;
+
                 //pre-load all categories during the initialization
-                ApiJsonDataAccessService.getAllCategories().then(function(data){
+                ApiJsonDataAccessService.getAllCategories().then(function (data) {
                     $scope.ShowLoadingAnimation = true;
                     $scope.AllCategories = data;
                     $scope.ShowLoadingAnimation = false;
@@ -27,45 +30,49 @@ app.controller("ApplicationController",['$scope','$http','$q','ApiJsonDataAccess
 
                 console.log('ApplicationController Init() - end');
 
-            }
+            };
 
 
             //get category products by querying the category id. If no category is selected, query all products for all categories
-            $scope.SetCurrentCategory = function(category){
+            $scope.SetCurrentCategory = function (category, pageNo) {
+
+                var page = pageNo;
+                if (isNaN(page))
+                    page = 1;
 
                 $scope.CurrentCategory = category;
                 //$scope.CurrentCategoryProducts = null;
 
                 var id = null;
-                if (category != null)
-                {
-                    console.log('ApplicationController SetCurrentCategory() - start [category: '+ category.toString() + ']');
+                if (category != null) {
+                    console.log('ApplicationController SetCurrentCategory() - start [category: ' + category.toString() + ']');
                     id = category.id;
                 }
-                else
-                {
+                else {
                     console.log('ApplicationController SetCurrentCategory() - start [category: undefined]');
                 }
 
-
                 //if the id = null, we are querying for all the products of all categories
-                ApiJsonDataAccessService.getProductsByCategoryId(id).then(function(data){
+                ApiJsonDataAccessService.getProductsByCategoryId(id, page).then(function (data) {
                     $scope.ShowLoadingAnimation = true;
                     $scope.CurrentCategoryProducts = data;      //load the products into variable
+                    $scope.IsFirstPage = (page == 1? true : false);
+                    $scope.IsLastPage = (page == $scope.CurrentCategoryProducts.totalPages? true : false);
                     $scope.ShowLoadingAnimation = false;
                 });
 
                 console.log('ApplicationController SetCurrentCategory() - end');
 
-            }
+            };
 
-            $scope.SetCurrentProduct = function(product){
+            $scope.SetCurrentProduct = function (product) {
 
-                console.log('ApplicationController SetCurrentProduct() - start [sku: '+ product.sku.toString() + ']');
+                console.log('ApplicationController SetCurrentProduct() - start [sku: ' + product.sku.toString() + ']');
 
                 $scope.CurrentProduct = product;
 
-                //ApiJsonDataAccessService.getProductDetailsBySku(sku).then(function(data){
+
+                    //ApiJsonDataAccessService.getProductDetailsBySku(sku).then(function(data){
                 //    $scope.ShowLoadingAnimation = true;
                 //    $scope.CurrentSelectedProduct = data;
                 //    $scope.ShowLoadingAnimation = false;
@@ -73,17 +80,14 @@ app.controller("ApplicationController",['$scope','$http','$q','ApiJsonDataAccess
 
                 console.log('ApplicationController SetCurrentProduct() - end');
 
-            }
+            };
 
-            $scope.GetFullUrl = function(imagePath){
-                if(imagePath != null && imagePath.length > 0)
+            $scope.GetFullUrl = function (imagePath) {
+                if (imagePath != null && imagePath.length > 0)
                     return $scope.UrlDomainPortion + imagePath;
                 else
                     return '';
-            }
-
-
-
+            };
 
 
             //execute the init() function
@@ -92,12 +96,3 @@ app.controller("ApplicationController",['$scope','$http','$q','ApiJsonDataAccess
 
         }]
 );
-
-
-
-
-
-
-
-
-

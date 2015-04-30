@@ -1,159 +1,157 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-
     <script src="lib/jquery-2.1.0.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
-
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
-
     <script src="js/BBPApp.js"></script>
     <script src="js/services/BBP_Services.js"></script>
     <script src="js/controllers/BBP_Controller.js"></script>
-
     <title>Bestbuy Products</title>
-
     <style>
-        header, footer{
+        header, footer {
             background-color: #003b64;
             color: #fff;
             margin-top: 20px;
             margin-bottom: 20px;
         }
-        .img-thumbnail{
+
+        .img-thumbnail {
             -webkit-box-shadow: 2px 2px 2px 0px rgba(44, 77, 119, 0.25);
-            -moz-box-shadow:    2px 2px 2px 0px rgba(44, 77, 119, 0.25);
-            box-shadow:         2px 2px 2px 0px rgba(44, 77, 119, 0.25);
+            -moz-box-shadow: 2px 2px 2px 0px rgba(44, 77, 119, 0.25);
+            box-shadow: 2px 2px 2px 0px rgba(44, 77, 119, 0.25);
         }
-        #imgModal{
+
+        #imgModal {
             margin-right: 20px;
             margin-bottom: 10px;
         }
-        .container{
+
+        .container {
             min-height: 800px;
+            width: 95%;
         }
     </style>
-
-
 </head>
 
 <body ng-app="BBPApp" ng-controller="ApplicationController">
+<header class="text-center">
+    <h1>This is the header section</h1>
+</header>
 
-    <header class="text-center">
-        <h1>This is the header section</h1>
-    </header>
 
-    <div class="container">
+<div class="container">
 
-        <aside class="col-xs-4">
+    <aside class="col-xs-4 col-md-4 col-lg-3">
+        <div class="list-group">
+            <button ng-repeat="c in AllCategories.subCategories"
+                    class="col-xs-12 col-md-12 col-lg-12 list-group-item text-justify {{CurrentCategory != null && CurrentCategory.id == c.id? 'active':''}}"
+                    href="#" ng-click="SetCurrentCategory(c)" onclick="return false;">
+                {{c.name}} <span class="badge hidden-xs">{{c.productCount}}</span>
+            </button>
+        </div>
+    </aside>
 
-            <div class="list-group">
-                <a ng-repeat="c in AllCategories.subCategories"
-                   class="list-group-item {{CurrentCategory != null && CurrentCategory.id == c.id? 'active':''}}"
-                   href="#" ng-click="SetCurrentCategory(c)">
-                    {{c.name}} <span class="badge">{{c.productCount}}</span>
+
+    <section class="col-xs-8 col-md-8 col-lg-9">
+
+        <!--paging at top of the products list-->
+        <div id="divPagingAtTop" ng-hide="ShowLoadingAnimation" class="text-center col-md-12 col-xs-12">
+            <ng-include src="'ProductPaging.html'"></ng-include>
+        </div>
+
+        <br /><br />
+
+        <!--products list-->
+        <div id="divProductsList" class="col-lg-12 col-md-12 col-xs-12">
+            <span ng-repeat="p in CurrentCategoryProducts.products" class="img-thumbnail text-center"
+                  title="{{p.name}}" style="float:left; margin: 0.5em;"
+                  ng-click="SetCurrentProduct(p)">
+                <a href="#" target="_blank" onclick="return false;"
+                   data-toggle="modal" data-target="#divProductDetailsModal">
+                    <img width="150px" height="150px" ng-src="{{ GetFullUrl(p.thumbnailImage) }}" alt="{{p.name}}">
                 </a>
+            </span>
+        </div>
+
+        <br /><br />
+
+
+        <!--Product Details in Modal-->
+        <div class="modal fade" id="divProductDetailsModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true" class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h2 class="modal-title">
+                            <small>SKU: {{CurrentProduct.sku}}</small>
+                        </h2>
+                    </div>
+                    <div class="modal-body jumbotron">
+                        <br/>
+
+                        <h3>{{CurrentProduct.name}} -
+                                    <span class="text-danger" style="font-weight: bold">{{CurrentProduct.regularPrice
+                                        < CurrentProduct.salePrice? CurrentProduct.salePrice : CurrentProduct.regularPrice | currency}}</span>
+                        </h3>
+                        <br/>
+                        <br/>
+
+                        <p>
+                            <img id="imgModal" class="pull-left img-thumbnail" width="150px" height="150px"
+                                 ng-src="{{ GetFullUrl(CurrentProduct.thumbnailImage) }}"
+                                 alt="{{p.name}}">
+                            <small>{{CurrentProduct.shortDescription}}
+                                <br/>
+                                <br/>
+
+                                <div class="text-center">
+                                    <a href="{{'http://www.bestbuy.ca' + CurrentProduct.productUrl}}" target="_blank"
+                                       class="btn btn-default">
+                                        See more details in new window >>
+                                    </a>
+                                </div>
+                            </small>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <button data-dismiss="modal" class="btn btn-primary pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Close&nbsp;</button>
+                        </p>
+                        <br/>
+                        <br/>
+                    </div>
+                    <br/>
+                </div>
+                <!-- /.modal-content -->
             </div>
-        </aside>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <!--paging at the bottom of the products list-->
+        <div id="divPagingAtBottom" ng-hide="ShowLoadingAnimation" class="text-center col-lg-12 col-md-12 col-xs-12">
+            <ng-include src="'ProductPaging.html'"></ng-include>
+        </div>
 
 
-        <section class="col-xs-8">
-            <div>
-                <span ng-repeat="p in CurrentCategoryProducts.products"
-                      class="img-thumbnail text-center" title="{{p.name}}"
-                      style="float:left; margin: 0.5em;" ng-click="SetCurrentProduct(p)">
-                    <a href="#" target="_blank"
-                       data-toggle="modal"  data-target="#divProductDetailsModal">
-                        <img width="150px" height="150px" ng-src="{{ GetFullUrl(p.thumbnailImage) }}" alt="{{p.name}}">
-                    </a>
-                </span>
-            </div>
-
-            <div class="modal fade" id="divProductDetailsModal" tabindex="-1">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true" class="glyphicon glyphicon-remove-circle"></span><span class="sr-only">Close</span>
-                            </button>
-
-                            <h2 class="modal-title">
-                                <small>SKU: {{CurrentProduct.sku}}</small>
-                            </h2>
+    </section>
 
 
-                        </div>
-
-                        <div class="modal-body jumbotron">
-
-                            <br />
-
-                            <h3>
-                                {{CurrentProduct.name}} -
-                                <span class="text-danger" style="font-weight: bold">{{CurrentProduct.regularPrice < CurrentProduct.salePrice? CurrentProduct.salePrice : CurrentProduct.regularPrice | currency}}</span>
-                            </h3>
+</div>
 
 
-                            <br /><br />
-
-                            <p>
-                                <img id="imgModal" class="pull-left img-thumbnail" width="150px" height="150px"
-                                     ng-src="{{ GetFullUrl(CurrentProduct.thumbnailImage) }}"
-                                     alt="{{p.name}}">
-
-                                <small>
-                                    {{CurrentProduct.shortDescription}}
-                                    <br />
-                                    <br />
-                                    <div class="text-center">
-                                        <a href="{{'http://www.bestbuy.ca' + CurrentProduct.productUrl}}"
-                                           target="_blank" class="btn btn-default">
-                                            See more details in new window >>
-                                        </a>
-                                    </div>
-
-
-                                </small>
-
-                                <br /><br /><br />
-                                <button data-dismiss="modal" class="btn btn-primary pull-right">
-                                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Close&nbsp;
-                                </button>
-
-                            </p>
-
-
-                            <br /><br />
-
-                        </div>
-
-                        <br />
-
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
-        </section>
-
-    </div>
-
-
-    <footer class="text-center">
-        <h1>This is the footer section</h1>
-    </footer>
-
-
-
-
-
+<footer class="text-center">
+    <h1>This is the footer section</h1>
+</footer>
 </body>
-
-
 
 </html>

@@ -27,16 +27,20 @@ app.service('ApiJsonDataAccessService', ['$http','$q',function($http,$q){
 
     };
 
-    var GetProductsByCategoryId = function(categoryId){
+    var GetProductsByCategoryId = function(categoryId, pageNo){
+
         var deferred = $q.defer();
+
         var param = '';
         if (categoryId === null)
             param = 'All';
         else
             param = categoryId.toString();
 
+        param = 'categoryid=' + param + '&page=' + pageNo + "&callback=?";
+
         var products = [];
-        var url = "http://www.bestbuy.ca/api/v2/json/search?categoryid=" + param + '&callback=?';
+        var url = "http://www.bestbuy.ca/api/v2/json/search?" + param;
         //url = 'json/' + param;
         console.log('URL: ' + url.toString());
         $.getJSON(url)
@@ -44,6 +48,7 @@ app.service('ApiJsonDataAccessService', ['$http','$q',function($http,$q){
                 products = data;
                 deferred.resolve(products);
             });
+
         return deferred.promise;
     };
 
