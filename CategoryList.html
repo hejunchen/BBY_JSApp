@@ -1,0 +1,7 @@
+<div class="list-group">
+    <button ng-repeat="c in AllCategories.subCategories"
+            class="col-xs-12 col-md-12 col-lg-12 list-group-item text-justify {{CurrentCategory != null && CurrentCategory.id == c.id? 'active':''}}"
+            href="#" ng-click="SetCurrentCategory(c)" onclick="return false;">
+        {{c.name}} <span class="badge hidden-xs">{{c.productCount}}</span>
+    </button>
+</div>

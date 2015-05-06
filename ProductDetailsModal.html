@@ -1,0 +1,52 @@
+<div class="modal fade" id="divProductDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true" class="glyphicon glyphicon-remove-circle"></span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title">
+                    <small>SKU: {{CurrentProduct.sku}}</small>
+                </h2>
+            </div>
+            <div class="modal-body jumbotron">
+                <br/>
+
+                <h3>{{CurrentProduct.name}} -
+                                    <span class="text-danger" style="font-weight: bold">{{CurrentProduct.regularPrice
+                                        < CurrentProduct.salePrice? CurrentProduct.salePrice : CurrentProduct.regularPrice | currency}}</span>
+                </h3>
+                <br/>
+                <br/>
+
+                <p>
+                    <img id="imgModal" class="pull-left img-thumbnail" width="150px" height="150px"
+                         ng-src="{{ GetFullUrl(CurrentProduct.thumbnailImage) }}"
+                         alt="{{p.name}}">
+                    <small>{{CurrentProduct.shortDescription}}
+                        <br/>
+                        <br/>
+
+                        <div class="text-center">
+                            <a href="{{'http://www.bestbuy.ca' + CurrentProduct.productUrl}}" target="_blank"
+                               class="btn btn-default">
+                                See more details in new window >>
+                            </a>
+                        </div>
+                    </small>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <button data-dismiss="modal" class="btn btn-primary pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Close&nbsp;</button>
+                </p>
+                <br/>
+                <br/>
+            </div>
+            <br/>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

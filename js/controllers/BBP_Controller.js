@@ -21,9 +21,11 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                 $scope.IsFirstPage = true;
                 $scope.IsLastPage = false;
 
+
+                $scope.ShowLoadingAnimation = true;
+
                 //pre-load all categories during the initialization
                 ApiJsonDataAccessService.getAllCategories().then(function (data) {
-                    $scope.ShowLoadingAnimation = true;
                     $scope.AllCategories = data;
                     $scope.ShowLoadingAnimation = false;
                 });
@@ -52,9 +54,11 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                     console.log('ApplicationController SetCurrentCategory() - start [category: undefined]');
                 }
 
+
+                $scope.ShowLoadingAnimation = true;
+
                 //if the id = null, we are querying for all the products of all categories
                 ApiJsonDataAccessService.getProductsByCategoryId(id, page).then(function (data) {
-                    $scope.ShowLoadingAnimation = true;
                     $scope.CurrentCategoryProducts = data;      //load the products into variable
                     $scope.IsFirstPage = (page == 1? true : false);
                     $scope.IsLastPage = (page == $scope.CurrentCategoryProducts.totalPages? true : false);
