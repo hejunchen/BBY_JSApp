@@ -15,7 +15,7 @@
 
                 <h3>{{CurrentProduct.name}} -
                                     <span class="text-danger" style="font-weight: bold">{{CurrentProduct.regularPrice
-                                        < CurrentProduct.salePrice? CurrentProduct.salePrice : CurrentProduct.regularPrice | currency}}</span>
+                                        > CurrentProduct.salePrice? CurrentProduct.salePrice : CurrentProduct.regularPrice | currency}}</span>
                 </h3>
                 <br/>
                 <br/>
