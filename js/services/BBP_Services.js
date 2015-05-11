@@ -59,10 +59,11 @@ app.service('ApiJsonDataAccessService', ['$http','$q',function($http,$q){
         var price = '';
         var deferred = $q.defer();
 
-        var query = 'http://portal.bestbuycanada.ca/portal/page?_pageid=433,822192&_dad=portal&_schema=PORTAL&l_skuid1='+sku+'&l_brand=bby';
+        var url = 'http://portal.bestbuycanada.ca/portal/page?_pageid=433,822192&_dad=portal&_schema=PORTAL&l_skuid1='+sku+'&l_brand=bby';
 
         console.log("start querying staff price");
-        $.get(query, function(data, results) {
+
+        $.get(url, function(data, results) {
             if (results != 'success' || $(data).find('td[width="20%"]').length < 3) {
                 price = "N/A";
                 console.log("Not Found Staff Price");
@@ -78,31 +79,10 @@ app.service('ApiJsonDataAccessService', ['$http','$q',function($http,$q){
 
     };
 
-    //var GetProductDetailsBySku = function(sku){
-    //    var deferred = $q.defer();
-    //    var details = [];
-    //    var url = "http://www.bestbuy.ca/api/v2/json/product/" + sku;
-    //
-    //    console.log('URL: ' + url.toString());
-    //    $http.get(url)
-    //        .success(function(data){
-    //            details = data;
-    //            deferred.resolve(details);
-    //        });
-    //    return deferred.promise;
-    //}
-
     return {
             getAllCategories: GetAllCategories
         ,   getProductsByCategoryId: GetProductsByCategoryId
         ,   getStaffPriceBySku: GetStaffPriceBySku
-        //, getProductDetailsBySku: GetProductDetailsBySku
     };
-
-
-
-
-
-
 
 }]);

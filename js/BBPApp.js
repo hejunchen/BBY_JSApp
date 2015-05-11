@@ -4,3 +4,4 @@
 
 var app = angular.module("BBPApp", []);
 
+console.log('CORS is supported: ' + $.support.cors.toString());

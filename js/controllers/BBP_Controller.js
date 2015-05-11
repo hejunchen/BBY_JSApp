@@ -12,7 +12,7 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                 console.log('ApplicationController Init() - start');
 
                 $scope.ShowLoadingAnimation = false;    //variable to control the loading animation on UI
-                $scope.AllowStaffPrice = false;         //a switch to turn on/off the Staff Price for Current Product.
+                $scope.AllowStaffPrice = true;         //a switch to turn on/off the Staff Price for Current Product.
                 $scope.AllCategories = null;            //this is the list of categories that will always be loaded at page load
                 $scope.CurrentCategory = null;          //the instance of selected category, this = null when page gets its initial load
                 $scope.CurrentCategoryProducts = null;  //the instance of category with its products, or all products for all categories
