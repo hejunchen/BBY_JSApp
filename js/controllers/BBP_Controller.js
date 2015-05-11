@@ -12,10 +12,12 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                 console.log('ApplicationController Init() - start');
 
                 $scope.ShowLoadingAnimation = false;    //variable to control the loading animation on UI
+                $scope.AllowStaffPrice = true;         //a switch to turn on/off the Staff Price for Current Product.
                 $scope.AllCategories = null;            //this is the list of categories that will always be loaded at page load
                 $scope.CurrentCategory = null;          //the instance of selected category, this = null when page gets its initial load
                 $scope.CurrentCategoryProducts = null;  //the instance of category with its products, or all products for all categories
                 $scope.CurrentProduct = null;           //the instance of currently selected product (by sku)
+                //$scope.CurrentProductStaffPrice = null; //the staff price of current product
                 $scope.UrlDomainPortion = 'http://www.bestbuy.ca';
 
                 $scope.IsFirstPage = true;
@@ -70,21 +72,28 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
             };
 
             $scope.SetCurrentProduct = function (product) {
-
                 console.log('ApplicationController SetCurrentProduct() - start [sku: ' + product.sku.toString() + ']');
-
                 $scope.CurrentProduct = product;
-
-
-                    //ApiJsonDataAccessService.getProductDetailsBySku(sku).then(function(data){
-                //    $scope.ShowLoadingAnimation = true;
-                //    $scope.CurrentSelectedProduct = data;
-                //    $scope.ShowLoadingAnimation = false;
-                //});
-
                 console.log('ApplicationController SetCurrentProduct() - end');
+            };
+
+
+            $scope.SetCurrentProductStaffPrice = function(product){
+
+                $scope.CurrentProduct.StaffPrice = undefined;
+
+                if ($scope.AllowStaffPrice)
+                {
+                    ApiJsonDataAccessService.getStaffPriceBySku(product.sku).then(function (data){
+                        console.log('ApplicationController SetCurrentProductStaffPrice() - start [sku: ' + product.sku.toString() + ']');
+                        $scope.CurrentProduct.StaffPrice = data;
+                        console.log('ApplicationController SetCurrentProductStaffPrice() - end');
+                    });
+                }
 
             };
+
+
 
             $scope.GetFullUrl = function (imagePath) {
                 if (imagePath != null && imagePath.length > 0)
@@ -92,6 +101,8 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                 else
                     return '';
             };
+
+
 
 
             //execute the init() function

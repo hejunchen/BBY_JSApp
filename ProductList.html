@@ -1,8 +1,13 @@
 <span ng-repeat="p in CurrentCategoryProducts.products" class="img-thumbnail text-center"
       title="{{p.name}}" style="float:left; margin: 0.5em;"
-      ng-click="SetCurrentProduct(p)">
-    <a href="#" target="_blank" onclick="return false;"
-       data-toggle="modal" data-target="#divProductDetailsModal">
-        <img width="150px" height="150px" ng-src="{{ GetFullUrl(p.thumbnailImage) }}" alt="{{p.name}}">
-    </a>
+      ng-click="SetCurrentProduct(p);SetCurrentProductStaffPrice(p);">
+    <div>
+        <a href="#" target="_blank" onclick="return false;" data-toggle="modal" data-target="#divProductDetailsModal">
+            <img width="150px" height="150px" ng-src="{{ GetFullUrl(p.thumbnailImage) }}" alt="{{p.name}}">
+        </a>
+    </div>
+    <div>
+        <!--<div>Sku: {{p.sku}}</div>-->
+        <div>Price: <span class="text-danger">{{p.regularPrice > p.salePrice? p.salePrice : p.regularPrice | currency}}</span></div>
+    </div>
 </span>

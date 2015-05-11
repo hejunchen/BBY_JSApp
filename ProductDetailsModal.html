@@ -12,11 +12,18 @@
             </div>
             <div class="modal-body jumbotron">
                 <br/>
-
-                <h3>{{CurrentProduct.name}} -
-                                    <span class="text-danger" style="font-weight: bold">{{CurrentProduct.regularPrice
-                                        < CurrentProduct.salePrice? CurrentProduct.salePrice : CurrentProduct.regularPrice | currency}}</span>
-                </h3>
+                <div>
+                    <h3>{{CurrentProduct.name}} -
+                        <span class="text-danger" style="font-weight: bold">
+                            {{CurrentProduct.regularPrice > CurrentProduct.salePrice? CurrentProduct.salePrice : CurrentProduct.regularPrice | currency}}
+                        </span>
+                    </h3>
+                    <h5 ng-show="AllowStaffPrice">
+                        Staff Price:
+                        <i ng-show="CurrentProduct.StaffPrice === undefined">Loading Now...</i>
+                        <i ng-show="CurrentProduct.StaffPrice != null">{{CurrentProduct.StaffPrice}}</i>
+                    </h5>
+                </div>
                 <br/>
                 <br/>
 
