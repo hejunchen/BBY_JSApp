@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63505795-467c-4798-b681-bad72b79d0a6" name="Default" comment="made jsonp call working by calling jquery $.getJSON(), but make sure the url contains &quot;callback=?&quot;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Default.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/BBP_Controller.js" afterPath="$PROJECT_DIR$/js/controllers/BBP_Controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/BBP_Services.js" afterPath="$PROJECT_DIR$/js/services/BBP_Services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BestbuyProducts.html" afterPath="$PROJECT_DIR$/BestbuyProducts.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProductDetailsModal.html" afterPath="$PROJECT_DIR$/ProductDetailsModal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProductList.html" afterPath="$PROJECT_DIR$/ProductList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BBY_JSApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductDetailsModal.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProductDetailsModal.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProductDetailsModal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.892858" vertical-offset="0" max-vertical-offset="1216">
-              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.27752808" vertical-offset="228" max-vertical-offset="1197">
+              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="26" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#h3#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -96,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Default.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Default.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Default.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0611588" vertical-offset="0" max-vertical-offset="932">
-              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+            <state vertical-scroll-proportion="-7.464286" vertical-offset="0" max-vertical-offset="323">
+              <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -134,10 +128,10 @@
         <option value="$PROJECT_DIR$/BestbuyProducts.html" />
         <option value="$PROJECT_DIR$/js/services/BBP_Services.js" />
         <option value="$PROJECT_DIR$/ProductList.html" />
-        <option value="$PROJECT_DIR$/ProductDetailsModal.html" />
         <option value="$PROJECT_DIR$/js/controllers/BBP_Controller.js" />
         <option value="$PROJECT_DIR$/Default.htm.html" />
         <option value="$PROJECT_DIR$/Default.html" />
+        <option value="$PROJECT_DIR$/ProductDetailsModal.html" />
       </list>
     </option>
   </component>
@@ -777,16 +771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProductDetailsModal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.892858" vertical-offset="0" max-vertical-offset="1216">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#h3#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/BBP_Controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2242">
@@ -797,9 +781,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Default.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0611588" vertical-offset="0" max-vertical-offset="932">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        <state vertical-scroll-proportion="-7.464286" vertical-offset="0" max-vertical-offset="323">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductDetailsModal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27752808" vertical-offset="228" max-vertical-offset="1197">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="26" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#h3#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
