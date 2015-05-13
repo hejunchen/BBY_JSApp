@@ -17,7 +17,6 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                 $scope.CurrentCategory = null;          //the instance of selected category, this = null when page gets its initial load
                 $scope.CurrentCategoryProducts = null;  //the instance of category with its products, or all products for all categories
                 $scope.CurrentProduct = null;           //the instance of currently selected product (by sku)
-                //$scope.CurrentProductStaffPrice = null; //the staff price of current product
                 $scope.UrlDomainPortion = 'http://www.bestbuy.ca';
 
                 $scope.IsFirstPage = true;
