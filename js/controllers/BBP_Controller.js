@@ -35,8 +35,6 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
 
             };
 
-
-            //get category products by querying the category id. If no category is selected, query all products for all categories
             $scope.SetCurrentCategory = function (category, pageNo) {
 
                 var page = pageNo;
@@ -76,7 +74,6 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                 console.log('ApplicationController SetCurrentProduct() - end');
             };
 
-
             $scope.SetCurrentProductStaffPrice = function(product){
 
                 $scope.CurrentProduct.StaffPrice = undefined;
@@ -92,8 +89,6 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
 
             };
 
-
-
             $scope.GetFullUrl = function (imagePath) {
                 if (imagePath != null && imagePath.length > 0)
                     return $scope.UrlDomainPortion + imagePath;
@@ -101,6 +96,10 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                     return '';
             };
 
+            $scope.ToggleStaffPriceSwitch = function() {
+                $scope.AllowStaffPrice = !$scope.AllowStaffPrice;
+                console.log('Staff Price status is changed to: ' + $scope.AllowStaffPrice.toString());
+            }
 
 
 

@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <!--<link rel="stylesheet" href="css/bootstrap-switch.min.css">-->
 
     <title>Bestbuy Products</title>
 
@@ -47,10 +48,13 @@
 <body ng-app="BBPApp" ng-controller="ApplicationController">
 
 <header class="text-center">
-    <h1>This is the header section</h1>
-
-    <div id="divStaffPrice"></div>
-
+    <div><h1>This is the header section</h1></div>
+    <div>
+        <button ng-click="ToggleStaffPriceSwitch()" class="btn btn-default">
+            <i class="glyphicon glyphicon-{{AllowStaffPrice ? 'ok' : 'remove'}}"></i>&nbsp;View Staff Price
+        </button>
+    </div>
+    <br />
 </header>
 
 
@@ -99,12 +103,17 @@
 <script src="lib/jquery-2.1.0.min.js"></script>
 <script src="lib/jquery.ajax-cross-origin.min.js"></script>
 <script src="lib/bootstrap.min.js"></script>
+<!--<script src="lib/bootstrap-switch.min.js"></script>-->
 <script src="lib/angular/angular.min.js"></script>
 <script src="lib/angular/angular-route.min.js"></script>
+<!--<script src="lib/angular/angular-bootstrap-switch.js"></script>-->
 <script src="js/BBPApp.js"></script>
 <script src="js/services/BBP_Services.js"></script>
 <script src="js/controllers/BBP_Controller.js"></script>
 
+<script>
+    $("#chkStaffPrice").bootstrapSwitch();
+</script>
 
 </body>
 
