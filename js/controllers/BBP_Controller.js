@@ -18,46 +18,46 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                 $scope.CurrentCategoryProducts = null;  //the instance of category with its products, or all products for all categories
                 $scope.CurrentProduct = null;           //the instance of currently selected product (by sku)
                 $scope.UrlDomainPortion = 'http://www.bestbuy.ca';
+                $scope.Language = "en";
 
                 $scope.IsFirstPage = true;
                 $scope.IsLastPage = false;
 
-
-                $scope.ShowLoadingAnimation = true;
-
                 //pre-load all categories during the initialization
-                ApiJsonDataAccessService.getAllCategories().then(function (data) {
-                    $scope.AllCategories = data;
-                    $scope.ShowLoadingAnimation = false;
-                });
+                $scope.GetAllCategories($scope.Language);
 
                 console.log('ApplicationController Init() - end');
 
             };
 
-            $scope.SetCurrentCategory = function (category, pageNo) {
+            $scope.GetAllCategories = function(lang){
+                $scope.ShowLoadingAnimation = true;
+                ApiJsonDataAccessService.getAllCategories(lang).then(function (data) {
+                    $scope.AllCategories = data;
+                    $scope.ShowLoadingAnimation = false;
+                });
+            }
+
+            $scope.SetCurrentCategory = function(category, pageNo) {
 
                 var page = pageNo;
                 if (isNaN(page))
                     page = 1;
 
                 $scope.CurrentCategory = category;
-                //$scope.CurrentCategoryProducts = null;
 
                 var id = null;
                 if (category != null) {
-                    console.log('ApplicationController SetCurrentCategory() - start [category: ' + category.toString() + ']');
+                    console.log('ApplicationController SetCurrentCategory() - start [category: ' + category.name.toString() + ']');
                     id = category.id;
                 }
                 else {
                     console.log('ApplicationController SetCurrentCategory() - start [category: undefined]');
                 }
 
-
                 $scope.ShowLoadingAnimation = true;
-
                 //if the id = null, we are querying for all the products of all categories
-                ApiJsonDataAccessService.getProductsByCategoryId(id, page).then(function (data) {
+                ApiJsonDataAccessService.getProductsByCategoryId(id, page, $scope.Language).then(function (data) {
                     $scope.CurrentCategoryProducts = data;      //load the products into variable
                     $scope.IsFirstPage = (page == 1? true : false);
                     $scope.IsLastPage = (page == $scope.CurrentCategoryProducts.totalPages? true : false);
@@ -68,7 +68,7 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
 
             };
 
-            $scope.SetCurrentProduct = function (product) {
+            $scope.SetCurrentProduct = function(product) {
                 console.log('ApplicationController SetCurrentProduct() - start [sku: ' + product.sku.toString() + ']');
                 $scope.CurrentProduct = product;
                 console.log('ApplicationController SetCurrentProduct() - end');
@@ -89,7 +89,7 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
 
             };
 
-            $scope.GetFullUrl = function (imagePath) {
+            $scope.GetFullUrl = function(imagePath) {
                 if (imagePath != null && imagePath.length > 0)
                     return $scope.UrlDomainPortion + imagePath;
                 else
@@ -100,8 +100,6 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
                 $scope.AllowStaffPrice = !$scope.AllowStaffPrice;
                 console.log('Staff Price status is changed to: ' + $scope.AllowStaffPrice.toString());
             }
-
-
 
             //execute the init() function
             $scope.init();

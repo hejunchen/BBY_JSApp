@@ -1,25 +1,7 @@
-<!--<div class="list-group">-->
-    <!--<button ng-repeat="c in AllCategories.subCategories"-->
-            <!--class="col-xs-12 col-md-12 col-lg-12 list-group-item text-justify {{CurrentCategory != null && CurrentCategory.id == c.id? 'active':''}}"-->
-            <!--href="#" ng-click="SetCurrentCategory(c)" onclick="return false;">-->
-        <!--{{c.name}} <span class="badge hidden-xs">{{c.productCount}}</span>-->
-    <!--</button>-->
-<!--</div>-->
-
-
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuCatalog"
-            data-toggle="dropdown" aria-expanded="true">
-        Category
-        <span class="caret"></span>
+<div class="list-group">
+    <button ng-repeat="c in AllCategories.subCategories"
+            class="col-xs-12 col-md-12 col-lg-12 list-group-item text-justify {{CurrentCategory != null && CurrentCategory.id == c.id? 'active':''}}"
+            href="#" ng-click="SetCurrentCategory(c)" onclick="return false;">
+        {{c.name}} <span class="badge hidden-xs pull-right">{{c.productCount}}</span>
     </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuCatalog">
-        <li role="presentation" ng-repeat="c in AllCategories.subCategories">
-            <a role="menuitem" class="col-xs-12 col-md-12 col-lg-12 text-justify {{CurrentCategory != null && CurrentCategory.id == c.id? 'active':''}}" tabindex="-1" href="#"
-               ng-click="SetCurrentCategory(c)" onclick="return false;">
-                {{c.name}} <span class="badge hidden-xs">{{c.productCount}}</span>
-            </a>
-        </li>
-    </ul>
 </div>
-

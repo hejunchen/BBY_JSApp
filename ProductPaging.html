@@ -1,19 +1,25 @@
-<button title="First Page" ng-click="SetCurrentCategory(CurrentCategory, 1)">
-    <i class="glyphicon glyphicon-step-backward"></i>
-</button>
-&nbsp;
-<button title="Previous Page" ng-click="SetCurrentCategory(CurrentCategory, CurrentCategoryProducts.currentPage-1)"
-        ng-disabled="IsFirstPage">
-    <i class="glyphicon glyphicon-chevron-left"></i>
-</button>
-&nbsp;
-<span>Page: {{CurrentCategoryProducts.currentPage}} / {{CurrentCategoryProducts.totalPages}}</span>
-&nbsp;
-<button title="Next Page" ng-click="SetCurrentCategory(CurrentCategory, CurrentCategoryProducts.currentPage+1)"
-        ng-disabled="IsLastPage">
-    <i class="glyphicon glyphicon-chevron-right"></i>
-</button>
-&nbsp;
-<button title="Last Page" ng-click="SetCurrentCategory(CurrentCategory, CurrentCategoryProducts.totalPages)">
-    <i class="glyphicon glyphicon-step-forward"></i>
-</button>
+<div class="topMargin bottomMargin text-center">
+    &nbsp;
+    <span class="text-uppercase"><b>Page: {{CurrentCategoryProducts.currentPage}} / {{CurrentCategoryProducts.totalPages}}</b></span>
+    &nbsp;
+    <br />
+
+    <div class="btn-group" role="group" aria-label="...">
+        <button class="btn btn-default btn-sm" title="First Page" ng-click="SetCurrentCategory(CurrentCategory, 1)"
+                ng-disabled="IsFirstPage">
+            <i class="glyphicon glyphicon-step-backward"></i>&nbsp;First
+        </button>
+        <button class="btn btn-default btn-sm" title="Previous Page" ng-click="SetCurrentCategory(CurrentCategory, CurrentCategoryProducts.currentPage-1)"
+                ng-disabled="IsFirstPage">
+            <i class="glyphicon glyphicon-chevron-left"></i>&nbsp;Back
+        </button>
+        <button class="btn btn-default btn-sm" title="Next Page" ng-click="SetCurrentCategory(CurrentCategory, CurrentCategoryProducts.currentPage+1)"
+                ng-disabled="IsLastPage">
+            Next&nbsp;<i class="glyphicon glyphicon-chevron-right"></i>
+        </button>
+        <button class="btn btn-default btn-sm" title="Last Page" ng-click="SetCurrentCategory(CurrentCategory, CurrentCategoryProducts.totalPages)"
+                ng-disabled="IsLastPage">
+            Last&nbsp;<i class="glyphicon glyphicon-step-forward"></i>
+        </button>
+    </div>
+</div>

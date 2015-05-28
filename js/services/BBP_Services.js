@@ -4,12 +4,11 @@
 
 app.service('ApiJsonDataAccessService', ['$http','$q',function($http,$q){
 
-      var GetAllCategories = function(){
+    var GetAllCategories = function(lang){
 
         var deferred = $q.defer();
         var categories = [];
-        var url = "http://www.bestbuy.ca/api/v2/json/category/Departments?callback=?";
-        //url = 'json/AllCategories.json';
+        var url = "http://www.bestbuy.ca/api/v2/json/category/Departments?lang=" + lang + "&callback=?";
         console.log('URL: ' + url.toString());
 
         $.getJSON(url)
@@ -24,10 +23,9 @@ app.service('ApiJsonDataAccessService', ['$http','$q',function($http,$q){
             });
         return deferred.promise;
 
-
     };
 
-    var GetProductsByCategoryId = function(categoryId, pageNo){
+    var GetProductsByCategoryId = function(categoryId, pageNo, lang){
 
         var deferred = $q.defer();
 
@@ -37,11 +35,10 @@ app.service('ApiJsonDataAccessService', ['$http','$q',function($http,$q){
         else
             param = categoryId.toString();
 
-        param = 'categoryid=' + param + '&page=' + pageNo + "&callback=?";
+        param = 'categoryid=' + param + '&page=' + pageNo + "&lang=" + lang + "&callback=?";
 
         var products = [];
         var url = "http://www.bestbuy.ca/api/v2/json/search?" + param;
-        //url = 'json/' + param;
         console.log('URL: ' + url.toString());
         $.getJSON(url)
             .success(function(data){
@@ -52,9 +49,7 @@ app.service('ApiJsonDataAccessService', ['$http','$q',function($http,$q){
         return deferred.promise;
     };
 
-
-    var GetStaffPriceBySku = function(sku)
-    {
+    var GetStaffPriceBySku = function(sku) {
 
         var price = '';
         var deferred = $q.defer();

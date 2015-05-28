@@ -39,53 +39,51 @@
 
         .container {
             min-height: 800px;
-            width: 100%;
+            width: 97%;
         }
-    </style>
+
+        .topMargin {
+            margin-top: 20px;
+        }
+        .bottomMargin {
+            margin-bottom: 20px;
+        }
+
+     </style>
 
 </head>
 
 <body ng-app="BBPApp" ng-controller="ApplicationController">
 
-<header>
-    <div class="text-center"><h1>This is the header section</h1></div>
-    <div>
-        <button ng-click="ToggleStaffPriceSwitch()" class="btn btn-default">
-            <i class="glyphicon glyphicon-{{AllowStaffPrice ? 'ok' : 'remove'}}"></i>&nbsp;View Staff Price
-        </button>
-        
-        <ng-include src="'CategoryList.html'"></ng-include>
-    </div>
-
-    <br />
+<header class="text-center">
+    <div><h1>This is the header section</h1></div>
 </header>
-
 
 <div class="container">
 
+    <section class="col-xs-3 col-md-3 col-lg-3">
+        <ng-include src="'CategoryList.html'"></ng-include>
+    </section>
 
-    <!--<aside class="col-xs-3 col-md-3 col-lg-3">-->
-        <!--<ng-include src="'CategoryList.html'"></ng-include>-->
-    <!--</aside>-->
+    <section class="col-xs-9 col-md-9 col-lg-9">
 
-    <section class="col-xs-12 col-md-12 col-lg-12">
-
-        <div id="divLoading" class="col-lg-12 col-md-12 col-xs-12" align="center" ng-show="ShowLoadingAnimation">
-            Loading...
-        </div>
+        <!--<div id="divLoading" class="col-lg-12 col-md-12 col-xs-12" align="center" ng-show="ShowLoadingAnimation">-->
+            <!--Loading...-->
+        <!--</div>-->
 
         <!--products list-->
-        <div class="col-lg-12 col-md-12 col-xs-12" ng-hide="ShowLoadingAnimation">
-            <ng-include src="'ProductPaging.html'" class="col-lg-12 col-md-12 col-xs-12"></ng-include>
-            <br/><br/>
+        <div class="col-lg-12 col-md-12 col-xs-12">
 
-            <div>
-                <ng-include src="'ProductList.html'" class="col-lg-12 col-md-12 col-xs-12"></ng-include>
+            <div class="text-center">
+                <button ng-click="ToggleStaffPriceSwitch()" class="btn btn-default">
+                    <i class="glyphicon glyphicon-{{AllowStaffPrice ? 'ok' : 'remove'}}"></i>&nbsp;Allow to View Staff Price
+                </button>
             </div>
-            <br/><br/>
+
+            <ng-include src="'ProductPaging.html'" class="col-lg-12 col-md-12 col-xs-12"></ng-include>
+            <ng-include src="'ProductList.html'" class="col-lg-12 col-md-12 col-xs-12"></ng-include>
             <ng-include src="'ProductPaging.html'" class="col-lg-12 col-md-12 col-xs-12"></ng-include>
         </div>
-
 
         <!--Product Details in Modal-->
         <div>
@@ -94,6 +92,9 @@
         <!-- /.modal -->
 
     </section>
+
+
+
 
 
 </div>
