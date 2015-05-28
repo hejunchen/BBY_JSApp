@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <!--<link rel="stylesheet" href="css/bootstrap-switch.min.css">-->
 
-    <title>Bestbuy Products</title>
+    <title>BestBuy Products</title>
 
     <style>
         header, footer {
@@ -47,24 +47,28 @@
 
 <body ng-app="BBPApp" ng-controller="ApplicationController">
 
-<header class="text-center">
-    <div><h1>This is the header section</h1></div>
+<header>
+    <div class="text-center"><h1>This is the header section</h1></div>
     <div>
         <button ng-click="ToggleStaffPriceSwitch()" class="btn btn-default">
             <i class="glyphicon glyphicon-{{AllowStaffPrice ? 'ok' : 'remove'}}"></i>&nbsp;View Staff Price
         </button>
+        
+        <ng-include src="'CategoryList.html'"></ng-include>
     </div>
+
     <br />
 </header>
 
 
 <div class="container">
 
-    <aside class="col-xs-3 col-md-3 col-lg-3">
-        <ng-include src="'CategoryList.html'"></ng-include>
-    </aside>
 
-    <section class="col-xs-8 col-md-8 col-lg-9">
+    <!--<aside class="col-xs-3 col-md-3 col-lg-3">-->
+        <!--<ng-include src="'CategoryList.html'"></ng-include>-->
+    <!--</aside>-->
+
+    <section class="col-xs-12 col-md-12 col-lg-12">
 
         <div id="divLoading" class="col-lg-12 col-md-12 col-xs-12" align="center" ng-show="ShowLoadingAnimation">
             Loading...
@@ -111,9 +115,7 @@
 <script src="js/services/BBP_Services.js"></script>
 <script src="js/controllers/BBP_Controller.js"></script>
 
-<script>
-    $("#chkStaffPrice").bootstrapSwitch();
-</script>
+
 
 </body>
 
