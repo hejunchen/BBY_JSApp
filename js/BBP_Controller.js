@@ -89,9 +89,9 @@ app.controller("ApplicationController", ['$scope', '$http', '$q', 'ApiJsonDataAc
 
             };
 
-            $scope.GetFullUrl = function(imagePath) {
-                if (imagePath != null && imagePath.length > 0)
-                    return $scope.UrlDomainPortion + imagePath;
+            $scope.GetFullUrl = function(path) {
+                if (path != null && path.length > 0)
+                    return $scope.UrlDomainPortion + path;
                 else
                     return '';
             };

@@ -3,7 +3,7 @@
       ng-click="SetCurrentProduct(p);SetCurrentProductStaffPrice(p);">
     <div>
         <a href="#" target="_blank" onclick="return false;" data-toggle="modal" data-target="#divProductDetailsModal">
-            <img width="150px" height="150px" ng-src="{{ GetFullUrl(p.thumbnailImage) }}" alt="{{p.name}}">
+            <img width="150px" height="150px" ng-src="{{ p.thumbnailImage }}" alt="{{p.name}}">
         </a>
     </div>
     <div>
